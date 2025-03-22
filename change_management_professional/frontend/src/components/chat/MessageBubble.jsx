@@ -16,7 +16,7 @@ const MessageBubble = ({ message }) => {
     <div className={`mb-4 flex ${isAi ? "justify-start" : "justify-end"}`}>
       {isAi && (
         <div className="flex-shrink-0 mr-2">
-          <div className="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-semibold">
+          <div className="h-8 w-8 rounded-full bg-primary-500 flex items-center justify-center text-white font-semibold">
             AI
           </div>
         </div>
@@ -25,7 +25,7 @@ const MessageBubble = ({ message }) => {
       <div className={`max-w-3/4 ${isAi ? "mr-8" : "ml-8"}`}>
         <div
           className={`rounded-lg p-3 ${
-            isAi ? "bg-gray-100 text-gray-800" : "bg-blue-600 text-white"
+            isAi ? "bg-gray-100 text-gray-800" : "bg-primary-600 text-white"
           }`}
         >
           <p className="text-sm">{message.text}</p>

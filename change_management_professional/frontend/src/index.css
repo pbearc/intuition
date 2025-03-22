@@ -7,3 +7,41 @@
 body {
   font-family: "Inter", sans-serif;
 }
+
+/* Add this to your global CSS file or as a separate CSS module */
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent url("assets/star.avif") repeat top center;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+/* Additional animations for plant */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* Create stars.png and twinkling.png images or use base64 encoded images */

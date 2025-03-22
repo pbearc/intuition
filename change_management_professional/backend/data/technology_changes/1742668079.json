@@ -1,0 +1,13 @@
+{
+  "id": 1742668079,
+  "name": "asd",
+  "description": "asd",
+  "training_link": "asd",
+  "affected_departments": [
+    "Sales & Marketing"
+  ],
+  "created_at": "2025-03-23T02:27:59.436484",
+  "created_by": "System",
+  "status": "pending",
+  "notifications_sent": false
+}

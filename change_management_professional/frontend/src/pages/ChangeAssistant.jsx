@@ -1,41 +1,111 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ChatInterface from "../components/chat/ChatInterface";
 import {
   ChartPieIcon,
   DocumentTextIcon,
   UserGroupIcon,
   EmojiHappyIcon,
+  LightBulbIcon,
+  QuestionMarkCircleIcon,
+  LightningBoltIcon,
 } from "@heroicons/react/outline";
 
 const ChangeAssistant = () => {
-  const [activeTab, setActiveTab] = useState("chat");
+  const [activeToolId, setActiveToolId] = useState(null);
+  const chatInterfaceRef = useRef(null);
 
   const tools = [
+    {
+      id: "change-initiative",
+      name: "New Change Initiative",
+      description: "Register a new technology change for your organization",
+      icon: LightningBoltIcon,
+      prompt:
+        "I'm now in Technology Change Agent mode. Please provide the name of the new technology:",
+    },
     {
       id: "scope",
       name: "Scope Analysis",
       description: "Define and analyze the scope of your change initiative",
       icon: ChartPieIcon,
+      prompt:
+        "I'm now in Scope Analysis mode. I'll help you define and analyze the scope of your change initiative.",
     },
     {
       id: "communication",
       name: "Communication Review",
       description: "Analyze and improve your change communications",
       icon: DocumentTextIcon,
+      prompt:
+        "I'm now in Communication Review mode. I'll help you analyze and improve your change communications. Please paste your communication draft below, and I'll provide feedback on clarity, completeness, and effectiveness.",
     },
     {
       id: "stakeholder",
       name: "Stakeholder Mapping",
       description: "Identify and analyze key stakeholders",
       icon: UserGroupIcon,
+      prompt:
+        "I'm now in Stakeholder Mapping mode. I'll help you identify and analyze key stakeholders for your change initiative. Please provide:\n\n1. Name of the change initiative\n2. Brief description of the change\n3. Key departments or groups that might be affected",
     },
     {
       id: "resistance",
       name: "Resistance Management",
       description: "Strategies to manage emotional responses to change",
       icon: EmojiHappyIcon,
+      prompt:
+        "I'm now in Resistance Management mode. I'll help you develop strategies to manage emotional responses to change. Type anything to start!",
+    },
+    {
+      id: "action-recommendations",
+      name: "Action Recommendations",
+      description:
+        "Get tailored action plan recommendations for your initiative",
+      icon: LightBulbIcon,
+      prompt:
+        "I'm now in Action Recommendations mode. I'll help you generate a tailored action plan for your change initiative. Please provide:\n\n1. Initiative name\n2. Initiative description\n3. Industry\n4. Organization size\n5. Current priorities (comma separated)\n6. Timeline constraints\n7. Risk tolerance (Low, Medium, High)",
+    },
+    {
+      id: "generate-faqs",
+      name: "Generate FAQs",
+      description: "Create role-based FAQs for your change initiative",
+      icon: QuestionMarkCircleIcon,
+      prompt:
+        "I'm now in FAQ Generation mode. I'll help you create comprehensive, role-based FAQs for your change initiative. Please provide:\n\n1. Initiative name\n2. Initiative description\n3. Target audiences (comma separated roles)\n4. Key concerns (comma separated)\n5. Timeline\n6. Delivery channels (comma separated)",
     },
   ];
+
+  const handleToolClick = (toolId) => {
+    setActiveToolId(toolId);
+
+    // Get the tool details
+    const selectedTool = tools.find((tool) => tool.id === toolId);
+
+    // If we have access to the chat interface, activate the tool mode
+    if (chatInterfaceRef.current && selectedTool) {
+      if (toolId === "change-initiative") {
+        // This special case uses the dedicated agent mode
+        if (typeof chatInterfaceRef.current.activateAgentMode === "function") {
+          chatInterfaceRef.current.activateAgentMode();
+        } else {
+          console.error(
+            "activateAgentMode method not available on chatInterface ref"
+          );
+        }
+      } else {
+        // For other tools, use regular tool mode
+        chatInterfaceRef.current.activateToolMode(
+          selectedTool.id,
+          selectedTool.prompt
+        );
+      }
+    } else {
+      console.error("Chat interface ref is not available");
+    }
+  };
+
+  const handleExitTool = () => {
+    setActiveToolId(null);
+  };
 
   return (
     <div className="h-full flex flex-col">
@@ -52,7 +122,12 @@ const ChangeAssistant = () => {
         {/* Chat area */}
         <div className="flex-1">
           <div className="h-full">
-            <ChatInterface />
+            <ChatInterface
+              ref={chatInterfaceRef}
+              activeTool={activeToolId}
+              onExitToolMode={handleExitTool}
+              onToolModeChange={setActiveToolId}
+            />
           </div>
         </div>
 
@@ -72,10 +147,22 @@ const ChangeAssistant = () => {
               {tools.map((tool) => (
                 <button
                   key={tool.id}
-                  className="w-full flex items-start p-3 rounded-lg hover:bg-blue-50 transition-colors text-left"
-                  onClick={() => {}}
+                  className={`w-full flex items-start p-3 rounded-lg transition-colors text-left
+                    ${
+                      activeToolId === tool.id
+                        ? "bg-primary-100 border border-primary-300"
+                        : "hover:bg-primary-50"
+                    }`}
+                  onClick={() => handleToolClick(tool.id)}
                 >
-                  <div className="flex-shrink-0 p-2 bg-blue-100 rounded-lg text-blue-600">
+                  <div
+                    className={`flex-shrink-0 p-2 rounded-lg
+                    ${
+                      activeToolId === tool.id
+                        ? "bg-primary-500 text-white"
+                        : "bg-primary-100 text-primary-600"
+                    }`}
+                  >
                     <tool.icon className="h-6 w-6" />
                   </div>
                   <div className="ml-3">
@@ -88,7 +175,7 @@ const ChangeAssistant = () => {
           </div>
 
           <div className="p-4 border-t border-gray-200">
-            <button className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg">
+            <button className="w-full py-2 px-4 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg">
               Create Custom Tool
             </button>
           </div>

@@ -1,0 +1,14 @@
+{
+  "id": 1742667121,
+  "name": "asd",
+  "description": "asd",
+  "training_link": "ad",
+  "affected_departments": [
+    "Regulatory Affairs",
+    "Quality Assurance"
+  ],
+  "created_at": "2025-03-23T02:12:01.685532",
+  "created_by": "System",
+  "status": "pending",
+  "notifications_sent": false
+}

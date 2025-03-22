@@ -36,26 +36,43 @@ const Dashboard = () => {
   const recentCampaigns = [
     {
       id: 1,
-      name: "ERP System Migration",
+      name: "Company-wide Internal GPT Adoption",
       status: "In Progress",
       progress: 65,
-      date: "2023-01-15",
+      date: "2025-01-15",
     },
     {
       id: 2,
-      name: "Remote Work Policy",
-      status: "Completed",
-      progress: 100,
-      date: "2022-11-23",
+      name: "Hybrid Work Policy Implementation",
+      status: "In Progress",
+      progress: 72,
+      date: "2024-11-01",
     },
     {
       id: 3,
-      name: "Department Restructuring",
-      status: "Planning",
+      name: "Digital Clinical Trials Platform",
+      status: "Planned",
       progress: 25,
-      date: "2023-02-10",
+      date: "2024-06-01",
+    },
+    {
+      id: 4,
+      name: "AI-Powered Drug Discovery Platform",
+      status: "Completed",
+      progress: 100,
+      date: "2022-05-10",
+    },
+    {
+      id: 5,
+      name: "Enterprise-wide Data Integration",
+      status: "Completed",
+      progress: 100,
+      date: "2022-08-01",
     },
   ];
+
+  // Only show the 3 most recent campaigns
+  const displayedCampaigns = recentCampaigns.slice(0, 3);
 
   const quickActions = [
     {
@@ -94,7 +111,7 @@ const Dashboard = () => {
             key={stat.name}
             className="bg-white p-4 rounded-lg shadow flex items-center"
           >
-            <div className="p-3 rounded-lg bg-blue-100 text-blue-600">
+            <div className="p-3 rounded-lg bg-primary-100 text-primary-600">
               <stat.icon className="h-6 w-6" />
             </div>
             <div className="ml-4">
@@ -126,10 +143,10 @@ const Dashboard = () => {
                 <Link
                   key={action.name}
                   to={action.href}
-                  className="block p-4 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-200 transition-colors"
+                  className="block p-4 border border-gray-200 rounded-lg hover:bg-primary-50 hover:border-primary-200 transition-colors"
                 >
                   <div className="flex items-center">
-                    <div className="p-2 rounded-lg bg-blue-100 text-blue-600">
+                    <div className="p-2 rounded-lg bg-primary-100 text-primary-600">
                       <action.icon className="h-5 w-5" />
                     </div>
                     <div className="ml-3">
@@ -155,7 +172,7 @@ const Dashboard = () => {
             </h2>
             <Link
               to="/campaigns"
-              className="text-sm text-blue-600 hover:text-blue-800"
+              className="text-sm text-primary-600 hover:text-primary-800"
             >
               View all
             </Link>
@@ -172,7 +189,7 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                  {recentCampaigns.map((campaign) => (
+                  {displayedCampaigns.map((campaign) => (
                     <tr key={campaign.id}>
                       <td className="px-3 py-3 whitespace-nowrap">
                         <div className="font-medium text-gray-800">
@@ -185,7 +202,7 @@ const Dashboard = () => {
                             campaign.status === "Completed"
                               ? "bg-green-100 text-green-800"
                               : campaign.status === "In Progress"
-                              ? "bg-blue-100 text-blue-800"
+                              ? "bg-primary-100 text-primary-800"
                               : "bg-yellow-100 text-yellow-800"
                           }`}
                         >
@@ -195,7 +212,7 @@ const Dashboard = () => {
                       <td className="px-3 py-3 whitespace-nowrap">
                         <div className="w-full bg-gray-200 rounded-full h-2.5">
                           <div
-                            className="bg-blue-600 h-2.5 rounded-full"
+                            className="bg-primary-600 h-2.5 rounded-full"
                             style={{ width: `${campaign.progress}%` }}
                           ></div>
                         </div>

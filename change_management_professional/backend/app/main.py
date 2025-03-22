@@ -1,9 +1,9 @@
 import logging
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.routes import chat
+from app.routes import chat, technology, tools, integrations
 from app.config import API_PREFIX, PROJECT_NAME, DEBUG
 
 # Configure logging
@@ -21,10 +21,10 @@ app = FastAPI(
     debug=DEBUG,
 )
 
-# Add CORS middleware
+# Add CORS middleware - allow requests from your frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins in development
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "*"],  # Add your frontend URL here
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
@@ -35,6 +35,25 @@ app.include_router(
     chat.router,
     prefix=f"{API_PREFIX}/chat",
     tags=["chat"],
+)
+
+app.include_router(
+    technology.router,
+    prefix=f"{API_PREFIX}/technology",
+    tags=["technology"],
+)
+
+app.include_router(
+    tools.router,
+    prefix=f"{API_PREFIX}/tools",
+    tags=["tools"],
+)
+
+# Add the new integrations router
+app.include_router(
+    integrations.router,
+    prefix=f"{API_PREFIX}/integrations",
+    tags=["integrations"],
 )
 
 @app.get("/")

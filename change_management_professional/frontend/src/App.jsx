@@ -7,6 +7,7 @@ import ChangeAssistant from "./pages/ChangeAssistant";
 import KnowledgeHub from "./pages/KnowledgeHub";
 import PastCampaigns from "./pages/PastCampaigns";
 import Settings from "./pages/Settings";
+import EngagePage from "./pages/EngagePage";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AIProvider } from "./contexts/AIContext";
 
@@ -27,6 +28,7 @@ function App() {
               <main className="flex-1 overflow-y-auto p-4">
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
+                  <Route path="/engage" element={<EngagePage />} />
                   <Route path="/assistant" element={<ChangeAssistant />} />
                   <Route path="/knowledge" element={<KnowledgeHub />} />
                   <Route path="/campaigns" element={<PastCampaigns />} />

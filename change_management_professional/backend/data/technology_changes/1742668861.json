@@ -1,0 +1,13 @@
+{
+  "id": 1742668861,
+  "name": "q",
+  "description": "q",
+  "training_link": "q",
+  "affected_departments": [
+    "Clinical Research"
+  ],
+  "created_at": "2025-03-23T02:41:01.435988",
+  "created_by": "System",
+  "status": "pending",
+  "notifications_sent": false
+}

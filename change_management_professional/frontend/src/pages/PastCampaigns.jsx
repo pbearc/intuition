@@ -22,60 +22,75 @@ const PastCampaigns = () => {
   const campaigns = [
     {
       id: 1,
-      name: "ERP System Implementation",
+      name: "AI-Powered Drug Discovery Platform",
       description:
-        "Company-wide implementation of new enterprise resource planning system",
+        "Implementation of machine learning tools to accelerate compound screening and drug discovery process",
       status: "Completed",
-      startDate: "2022-06-15",
-      endDate: "2022-12-10",
-      success: 95,
-      team: ["Jennifer K.", "Michael T.", "Sarah L."],
-      approach: "ADKAR",
+      startDate: "2023-05-10",
+      endDate: "2023-11-15",
+      success: 92,
+      team: ["Dr. Rachel Chen", "Michael Torres", "Samantha Lee"],
+      approach: "Agile",
     },
     {
       id: 2,
-      name: "Hybrid Work Model Transition",
-      description: "Transition from fully remote to hybrid work environment",
-      status: "In Progress",
-      startDate: "2023-01-10",
-      endDate: "2023-04-30",
-      success: 68,
-      team: ["Robert M.", "Lisa P.", "David S."],
-      approach: "Kotter",
-    },
-    {
-      id: 3,
-      name: "Customer Service Reorganization",
+      name: "Enterprise-wide Data Integration",
       description:
-        "Restructuring of customer service department to improve efficiency",
-      status: "Planned",
-      startDate: "2023-05-15",
-      endDate: "2023-08-31",
-      success: null,
-      team: ["Karen W.", "Mark J."],
-      approach: "Lewin",
-    },
-    {
-      id: 4,
-      name: "New Product Launch Process",
-      description: "Implementation of revised product launch workflow",
+        "Integration of clinical, research, and manufacturing data systems for improved analytics",
       status: "Completed",
-      startDate: "2022-09-01",
-      endDate: "2023-01-25",
-      success: 87,
-      team: ["Thomas R.", "Jessica M.", "Andrew P."],
+      startDate: "2023-08-01",
+      endDate: "2024-02-28",
+      success: 88,
+      team: ["David Wilson", "Lisa Patel", "Thomas Rodriguez"],
       approach: "ADKAR",
     },
     {
-      id: 5,
-      name: "IT Infrastructure Migration",
-      description: "Migration to cloud-based infrastructure and services",
+      id: 3,
+      name: "Company-wide Internal GPT Adoption",
+      description:
+        "Training and implementation of proprietary GPT system for research documentation and knowledge management",
       status: "In Progress",
-      startDate: "2023-02-01",
-      endDate: "2023-07-15",
-      success: 42,
-      team: ["Patricia L.", "Steven B.", "Emma C."],
+      startDate: "2025-01-15",
+      endDate: "2025-06-30",
+      success: 65,
+      team: ["Karen Williams", "Mark Johnson", "Patricia Nguyen"],
+      approach: "Kotter",
+    },
+    {
+      id: 4,
+      name: "Hybrid Work Policy Implementation",
+      description:
+        "Transition to flexible work environment with updated collaboration tools and protocols",
+      status: "In Progress",
+      startDate: "2024-11-01",
+      endDate: "2025-05-15",
+      success: 72,
+      team: ["Robert Martinez", "Jessica Morgan", "Steven Black"],
+      approach: "Lewin",
+    },
+    {
+      id: 5,
+      name: "Digital Clinical Trials Platform",
+      description:
+        "Rollout of new decentralized clinical trial technology with remote monitoring capabilities",
+      status: "Planned",
+      startDate: "2025-06-01",
+      endDate: "2025-12-15",
+      success: null,
+      team: ["Emma Chen", "Andrew Peters", "Nicole Washington"],
       approach: "PDCA",
+    },
+    {
+      id: 6,
+      name: "Laboratory Automation System",
+      description:
+        "Implementation of robotics and IoT sensors for high-throughput screening and automated data collection",
+      status: "Planned",
+      startDate: "2025-07-10",
+      endDate: "2026-01-31",
+      success: null,
+      team: ["James Brown", "Sarah Kim", "Daniel Garcia"],
+      approach: "Agile",
     },
   ];
 
@@ -99,8 +114,8 @@ const PastCampaigns = () => {
           Past Change Campaigns
         </h1>
         <p className="text-gray-600">
-          Archive of previous change management initiatives with insights and
-          recommendations
+          Archive of previous technology change management initiatives with
+          insights and recommendations
         </p>
       </div>
 
@@ -113,7 +128,7 @@ const PastCampaigns = () => {
           <input
             type="text"
             placeholder="Search campaigns..."
-            className="pl-10 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="pl-10 pr-4 py-2 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
         </div>
 
@@ -123,7 +138,7 @@ const PastCampaigns = () => {
             Filter
           </button>
 
-          <button className="ml-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700">
+          <button className="ml-3 inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-medium hover:bg-primary-700">
             Add New Campaign
           </button>
         </div>
@@ -137,7 +152,7 @@ const PastCampaigns = () => {
               key={tab.id}
               className={`whitespace-nowrap pb-2 text-sm font-medium border-b-2 ${
                 activeTab === tab.id
-                  ? "border-blue-500 text-blue-600"
+                  ? "border-primary-500 text-primary-600"
                   : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
               }`}
               onClick={() => setActiveTab(tab.id)}
@@ -213,7 +228,7 @@ const PastCampaigns = () => {
                         campaign.status === "Completed"
                           ? "bg-green-100 text-green-800"
                           : campaign.status === "In Progress"
-                          ? "bg-blue-100 text-blue-800"
+                          ? "bg-primary-100 text-primary-800"
                           : "bg-yellow-100 text-yellow-800"
                       }`}
                     >
@@ -257,7 +272,7 @@ const PastCampaigns = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div className="flex justify-end space-x-2">
                       <button
-                        className="text-gray-400 hover:text-blue-600"
+                        className="text-gray-400 hover:text-primary-600"
                         title="Duplicate"
                       >
                         <DocumentDuplicateIcon className="h-5 w-5" />
