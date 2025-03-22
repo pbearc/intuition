@@ -10,6 +10,8 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   LightningBoltIcon,
+  UserGroupIcon,
+  ChartBarIcon,
 } from "@heroicons/react/outline";
 import msdLogo from "../../assets/msd-logo.png";
 
@@ -19,21 +21,26 @@ const Sidebar = () => {
 
   const navigation = [
     { name: "Dashboard", href: "/", icon: HomeIcon },
-    { name: "Engage", href: "/engage", icon: LightningBoltIcon },
+    // { name: "Engage", href: "/engage", icon: LightningBoltIcon },
     { name: "AI Assistant", href: "/assistant", icon: ChatAlt2Icon },
     { name: "Knowledge Hub", href: "/knowledge", icon: BookOpenIcon },
+    {
+      name: "Employee Engagement",
+      href: "/employee-engagement",
+      icon: UserGroupIcon,
+    },
     { name: "Past Campaigns", href: "/campaigns", icon: ArchiveIcon },
     { name: "Settings", href: "/settings", icon: CogIcon },
   ];
 
   return (
     <div
-      className={`relative h-screen bg-primary-700 transition-all duration-300 ease-in-out ${
+      className={`relative h-screen bg-white border-r border-gray-200 transition-all duration-300 ease-in-out ${
         isCollapsed ? "w-20" : "w-64"
       }`}
     >
       {/* Logo and Collapse Button */}
-      <div className="flex items-center justify-between h-16 px-4 text-white">
+      <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
         {!isCollapsed && (
           <div className="flex items-center">
             <img src={msdLogo} alt="MSD Logo" className="h-8" />
@@ -41,14 +48,14 @@ const Sidebar = () => {
         )}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className={`p-1 rounded-md hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-white ${
+          className={`p-1 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 ${
             isCollapsed ? "mx-auto" : ""
           }`}
         >
           {isCollapsed ? (
-            <ChevronRightIcon className="h-6 w-6 text-white" />
+            <ChevronRightIcon className="h-6 w-6 text-gray-700" />
           ) : (
-            <ChevronLeftIcon className="h-6 w-6 text-white" />
+            <ChevronLeftIcon className="h-6 w-6 text-gray-700" />
           )}
         </button>
       </div>
@@ -63,12 +70,16 @@ const Sidebar = () => {
                 to={item.href}
                 className={`flex items-center px-3 py-2 rounded-md text-sm font-medium ${
                   isActive
-                    ? "bg-primary-800 text-white"
-                    : "text-primary-100 hover:bg-primary-600"
+                    ? "bg-gray-100 text-primary-600"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-primary-600"
                 } ${isCollapsed ? "justify-center" : ""}`}
                 title={isCollapsed ? item.name : ""}
               >
-                <item.icon className={`h-5 w-5 ${isCollapsed ? "" : "mr-3"}`} />
+                <item.icon
+                  className={`h-5 w-5 ${isCollapsed ? "" : "mr-3"} ${
+                    isActive ? "text-primary-600" : "text-gray-500"
+                  }`}
+                />
                 {!isCollapsed && item.name}
               </Link>
             );

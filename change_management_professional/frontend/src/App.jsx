@@ -8,6 +8,7 @@ import KnowledgeHub from "./pages/KnowledgeHub";
 import PastCampaigns from "./pages/PastCampaigns";
 import Settings from "./pages/Settings";
 import EngagePage from "./pages/EngagePage";
+import EmployeeEngagement from "./pages/EmployeeEngagement";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AIProvider } from "./contexts/AIContext";
 
@@ -33,6 +34,10 @@ function App() {
                   <Route path="/knowledge" element={<KnowledgeHub />} />
                   <Route path="/campaigns" element={<PastCampaigns />} />
                   <Route path="/settings" element={<Settings />} />
+                  <Route
+                    path="/employee-engagement"
+                    element={<EmployeeEngagement />}
+                  />
                 </Routes>
               </main>
             </div>
