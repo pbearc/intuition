@@ -1,9 +1,11 @@
+# app/main.py
 import logging
-from fastapi import FastAPI, HTTPException, Depends, APIRouter
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.routes import chat, technology, tools, integrations
+from app.routes import jira_routes  # Import the jira_routes directly
 from app.config import API_PREFIX, PROJECT_NAME, DEBUG
 
 # Configure logging
@@ -49,12 +51,33 @@ app.include_router(
     tags=["tools"],
 )
 
-# Add the new integrations router
+# Add the integrations router
 app.include_router(
     integrations.router,
     prefix=f"{API_PREFIX}/integrations",
     tags=["integrations"],
 )
+
+# Add the Jira router - make sure the prefix matches what your frontend expects
+# Note: We're not adding the API_PREFIX here because the router already includes /api in its prefix
+app.include_router(jira_routes.router)
+
+# Add a diagnostic endpoint
+@app.get(f"{API_PREFIX}/diagnostic")
+async def run_diagnostic():
+    """Run a system diagnostic check"""
+    from app.routes.jira_routes import JIRA_BASE_URL, JIRA_API_URL, JIRA_EMAIL
+    
+    return {
+        "api_status": "operational",
+        "environment": {
+            "debug": DEBUG,
+            "jira_base_url": JIRA_BASE_URL,
+            "jira_api_url": JIRA_API_URL,
+            "jira_email": JIRA_EMAIL,
+            "jira_creds_configured": bool(JIRA_EMAIL and JIRA_API_URL)
+        }
+    }
 
 @app.get("/")
 async def root():

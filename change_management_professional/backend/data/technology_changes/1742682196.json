@@ -1,0 +1,13 @@
+{
+  "id": 1742682196,
+  "name": "d",
+  "description": "d",
+  "training_link": "d",
+  "affected_departments": [
+    "Human Resources"
+  ],
+  "created_at": "2025-03-23T06:23:16.648658",
+  "created_by": "System",
+  "status": "pending",
+  "notifications_sent": false
+}

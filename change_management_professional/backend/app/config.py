@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from pydantic_settings import BaseSettings
+from typing import List, Optional
 
 # Load environment variables from .env file
 load_dotenv()
@@ -20,10 +22,54 @@ API_PREFIX = "/api/v1"
 PROJECT_NAME = "Change Management AI Assistant"
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
-# LLM settings
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-pro")
-MOCK_LLM = os.getenv("USE_MOCK_LLM", "False").lower() == "true" or not GEMINI_API_KEY
+# Pydantic settings for FastAPI - Updated for Pydantic V2
+# This class defines all environment variables you might have in .env
+class Settings(BaseSettings):
+    # API settings
+    API_V1_STR: str = "/api"
+    
+    # CORS settings
+    CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:5173", "https://yourdomain.com"]
+    
+    # Database settings
+    DATABASE_URL: str = "sqlite:///./test.db"
+    DB_HOST: Optional[str] = None
+    DB_USER: Optional[str] = None
+    DB_PASSWORD: Optional[str] = None
+    DB_NAME: Optional[str] = None
+    
+    # LLM settings
+    GEMINI_API_KEY: Optional[str] = None
+    GEMINI_MODEL: Optional[str] = None
+    USE_MOCK_LLM: Optional[bool] = None
+    
+    # Email settings
+    SMTP_SERVER: Optional[str] = None
+    SMTP_PORT: Optional[int] = None
+    SMTP_USERNAME: Optional[str] = None
+    SMTP_PASSWORD: Optional[str] = None
+    
+    # Jira settings
+    JIRA_BASE_URL: Optional[str] = None
+    JIRA_EMAIL: Optional[str] = None
+    JIRA_API_TOKEN: Optional[str] = None
+    
+    model_config = {
+        "env_file": ".env",
+        "case_sensitive": True,
+        # This is the key setting - allow extra fields from .env
+        "extra": "ignore",
+    }
+
+# Create settings instance
+settings = Settings()
+
+# LLM settings - use the values from settings if available
+GEMINI_API_KEY = settings.GEMINI_API_KEY or os.getenv("GEMINI_API_KEY", "")
+GEMINI_MODEL = settings.GEMINI_MODEL or os.getenv("GEMINI_MODEL", "gemini-1.5-pro")
+MOCK_LLM = (settings.USE_MOCK_LLM or 
+            os.getenv("USE_MOCK_LLM", "False").lower() == "true" or 
+            not GEMINI_API_KEY)
 
 # Vector database settings
 VECTOR_DB_PATH = str(PROCESSED_DIR / "vectordb")
@@ -36,6 +82,16 @@ SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.7"))
 # RAG settings
 DOCUMENT_CHUNK_SIZE = int(os.getenv("DOCUMENT_CHUNK_SIZE", "1000"))
 DOCUMENT_CHUNK_OVERLAP = int(os.getenv("DOCUMENT_CHUNK_OVERLAP", "200"))
+
+# Jira settings - use the values from settings if available
+JIRA_BASE_URL = settings.JIRA_BASE_URL or os.getenv("JIRA_BASE_URL", "")
+JIRA_EMAIL = settings.JIRA_EMAIL or os.getenv("JIRA_EMAIL", "")
+JIRA_API_TOKEN = settings.JIRA_API_TOKEN or os.getenv("JIRA_API_TOKEN", "")
+
+# Format the Jira API URL correctly
+if JIRA_BASE_URL and not JIRA_BASE_URL.endswith("/"):
+    JIRA_BASE_URL += "/"
+JIRA_API_URL = f"{JIRA_BASE_URL}rest/api/3" if JIRA_BASE_URL else ""
 
 # Content templates
 SYSTEM_TEMPLATE = """
@@ -70,3 +126,24 @@ MOCK_RESPONSES = {
     "lewin": "Lewin's Change Management Model includes three stages: Unfreeze, Change, and Refreeze. It focuses on preparing for change, implementing it, and making it permanent.",
     "kotter": "Kotter's 8-Step Process includes: 1) Create urgency, 2) Form a coalition, 3) Create a vision, 4) Communicate the vision, 5) Remove obstacles, 6) Create short-term wins, 7) Build on the change, 8) Anchor the changes."
 }
+
+# Add some diagnostic info to help with debugging
+def get_config_summary():
+    """Return a summary of the most important configuration values"""
+    return {
+        "jira_config": {
+            "base_url": JIRA_BASE_URL,
+            "api_url": JIRA_API_URL,
+            "email": JIRA_EMAIL,
+            "token_exists": bool(JIRA_API_TOKEN),
+            "is_configured": bool(JIRA_BASE_URL and JIRA_EMAIL and JIRA_API_TOKEN)
+        },
+        "api_settings": {
+            "prefix": API_PREFIX,
+            "debug": DEBUG
+        },
+        "llm_settings": {
+            "model": GEMINI_MODEL,
+            "mock_enabled": MOCK_LLM
+        }
+    }
