@@ -1,0 +1,13 @@
+{
+  "id": 1742688025,
+  "name": "d",
+  "description": "d",
+  "training_link": "d",
+  "affected_departments": [
+    "Finance"
+  ],
+  "created_at": "2025-03-23T08:00:25.479559",
+  "created_by": "System",
+  "status": "pending",
+  "notifications_sent": false
+}

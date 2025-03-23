@@ -1,0 +1,14 @@
+{
+  "id": 1742688092,
+  "name": "msd-gpt",
+  "description": "msd-gpt",
+  "training_link": "msd-gpt",
+  "affected_departments": [
+    "Regulatory Affairs",
+    "Quality Assurance"
+  ],
+  "created_at": "2025-03-23T08:01:32.678165",
+  "created_by": "System",
+  "status": "pending",
+  "notifications_sent": false
+}

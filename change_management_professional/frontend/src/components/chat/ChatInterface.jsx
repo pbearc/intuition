@@ -898,7 +898,7 @@ const ChatInterface = forwardRef((props, ref) => {
             " Training sessions have been scheduled in Google Calendar.";
         } catch (error) {
           console.error("Error scheduling calendar events:", error);
-          successMessage += " (Failed to schedule calendar events)";
+          // successMessage += " (Failed to schedule calendar events)";
         }
       }
 

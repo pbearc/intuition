@@ -1,0 +1,13 @@
+{
+  "id": 1742688165,
+  "name": "msd-gpt",
+  "description": "msd-gpt",
+  "training_link": "msd-gpt",
+  "affected_departments": [
+    "Finance"
+  ],
+  "created_at": "2025-03-23T08:02:45.068545",
+  "created_by": "System",
+  "status": "pending",
+  "notifications_sent": false
+}
