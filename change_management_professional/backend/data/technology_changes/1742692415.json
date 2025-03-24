@@ -1,0 +1,14 @@
+{
+  "id": 1742692415,
+  "name": "msd-gpt",
+  "description": "msd-gpt",
+  "training_link": "msd-gpt",
+  "affected_departments": [
+    "Research & Development",
+    "Regulatory Affairs"
+  ],
+  "created_at": "2025-03-23T09:13:35.912612",
+  "created_by": "System",
+  "status": "pending",
+  "notifications_sent": false
+}

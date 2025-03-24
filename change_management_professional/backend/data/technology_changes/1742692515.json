@@ -1,0 +1,13 @@
+{
+  "id": 1742692515,
+  "name": "asd",
+  "description": "asd",
+  "training_link": "asd.com",
+  "affected_departments": [
+    "Human Resources"
+  ],
+  "created_at": "2025-03-23T09:15:15.041783",
+  "created_by": "System",
+  "status": "pending",
+  "notifications_sent": false
+}

@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Demo Videos
+
+### Employee View
+
+![Employee View](https://img.youtube.com/vi/FxAxspQRE3k/0.jpg)  
+[![Watch Video](https://img.shields.io/badge/▶%20Watch%20Video-red)](https://youtu.be/FxAxspQRE3k)
+
+### Change Professional View
+
+![Change Professional View](https://img.youtube.com/vi/9RDqXmom4xg/0.jpg)  
+[![Watch Video](https://img.shields.io/badge/▶%20Watch%20Video-red)](https://youtu.be/9RDqXmom4xg)
+
 ## Available Scripts
 
 In the project directory, you can run:
