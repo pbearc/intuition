@@ -3,8 +3,20 @@
 This repo contains 2 main folders, 1 for change manager, 1 for the average view point of employees.
 The aim of this project is to focus on "awareness" from **AKDAR** framework, that is, let employees be aware of the new technologies available.
 
+## Demo Videos
+
+### Employee View
+
+![Employee View](https://img.youtube.com/vi/FxAxspQRE3k/0.jpg)  
+[![Watch Video](https://img.shields.io/badge/▶%20Watch%20Video-red)](https://youtu.be/FxAxspQRE3k)
+
+### Change Professional View
+
+![Change Professional View](https://img.youtube.com/vi/9RDqXmom4xg/0.jpg)  
+[![Watch Video](https://img.shields.io/badge/▶%20Watch%20Video-red)](https://youtu.be/9RDqXmom4xg)
 
 ## set up
+
 frontend:
 
 ```
@@ -18,10 +30,12 @@ backend:
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
+
 ## NOTE:
+
 the ai chatbots wouldn't work because we have removed the tokens before uploading to github.
 
-------
+---
 
 # Problem Statement
 
@@ -29,15 +43,17 @@ the ai chatbots wouldn't work because we have removed the tokens before uploadin
 
 ## Awareness
 
-Employees are hesitant to adopt and be aware of new technology. This could be due to them being:  
-- Unfamiliarized  
-- Uninterested  
-- Busy  
+Employees are hesitant to adopt and be aware of new technology. This could be due to them being:
+
+- Unfamiliarized
+- Uninterested
+- Busy
 
 ## Reinforcement
 
-Even when employees are successfully onboarded, they tend to stick to their old ways of working afterward. They are:  
-- Inconsistent  
+Even when employees are successfully onboarded, they tend to stick to their old ways of working afterward. They are:
+
+- Inconsistent
   - In terms of picking up new technology into their routine.
 
 ---
@@ -46,26 +62,34 @@ Even when employees are successfully onboarded, they tend to stick to their old 
 
 ## AI Agent
 
-### Unfamiliarized  
+### Unfamiliarized
+
 We created AI agents that specialize in helping:
+
 - **Managers** in generating the most suitable change plan by analyzing stakeholders, scope, action plan, and communication way before change happens.
 - **Managers** in handling employees' moods and concerns about the change.
 - **Employees** in suggesting what tools are suitable for their specialty.
 
-### Busy  
+### Busy
+
 We created AI agents that will:
+
 - Create Jira tickets.
 - Set schedules in Google Calendar for the whole team for learning the changes.
 - Help employees set a schedule to attend training.
 
 ### Innovation
 
-### Uninterested  
+### Uninterested
+
 We implemented a gamified usage of new technology with an appealing frontend:
+
 - The longer users interact with the new technology, the more they adopt it. They can plant flowers that grow bigger to earn points.
 
-### Inconsistent  
+### Inconsistent
+
 We created a dashboard visualizing the user’s and each team’s engagement rate with our services:
+
 - The higher the engagement rate, the redder the square.
 - This cultivates healthy competition among employees.
 - Employees with high engagement rates can gain badges based on their tier.
@@ -75,11 +99,13 @@ We created a dashboard visualizing the user’s and each team’s engagement rat
 # How it Works
 
 ### Employee’s POV
+
 - **Schedule trainings** using the AI chatbot.
 - **Engage with new technology** to maintain a higher engagement rate, resulting in a high tier and a cooler badge.
 - **Ask the AI chatbot** for suggestions on higher optimization of technological tools.
 
 ### Change Professional’s POV
+
 - **Plan**, discuss, and consult with stakeholders and AI for the change plan.
 - Create the change plan and notify stakeholders using AI agents.
 - **Monitor the change data in real-time** to measure adoption, foster resilience, and trust by addressing employees' concerns.
@@ -90,17 +116,20 @@ We created a dashboard visualizing the user’s and each team’s engagement rat
 # Tech Stack
 
 ### AI Agent
-- AI agent for **CTO**  
-- AI agent for **employees**  
-- Is a **RAG**  
-- Scraped **MSD** data for knowledge  
-- Customized suggestions to increase technology engagement rate  
-- Has **Google Calendar** plugin  
-- Schedules trainings for users based on requests  
+
+- AI agent for **CTO**
+- AI agent for **employees**
+- Is a **RAG**
+- Scraped **MSD** data for knowledge
+- Customized suggestions to increase technology engagement rate
+- Has **Google Calendar** plugin
+- Schedules trainings for users based on requests
 
 ### Frontend
+
 - **React**
 
 ### Backend
+
 - **FlaskAPI**
 - **Mongoose DB**
