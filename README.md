@@ -1,12 +1,12 @@
 # iNTUition (team 48) (transformasi)
 
-This is our submission to NTU's iNTUition 2025 hackathon.
+- This is our submission to NTU's iNTUition 2025 hackathon.
 
-Our chosen track is to leverage AI agent to help companies ease the process of introducing new technologies to employees.
+- Our chosen track is to leverage AI agent to help companies ease the process of introducing new technologies to employees.
 
-This repo contains 2 main folders, 1 meant for change manager, the other meant for average employees.
+- This repo contains 2 main folders, 1 meant for change manager, the other meant for average employees.
 
-The aim of this project is to focus on "awareness" element from **AKDAR** framework, that is, let employees be aware of the new technologies available.
+- The aim of this project is to focus on "awareness" element from **AKDAR** framework, that is, let employees be aware of the new technologies available.
 
 ## Demo Videos
 
